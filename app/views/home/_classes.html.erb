@@ -1,0 +1,20 @@
+<div class="card mt-3 shadow-sm" style="border-color: gray; line-height: 0.8;">
+    <div class="d-flex justify-content-between align-items-end p-3">
+      <div class="fs-6 fw-normal">
+        <p><strong>Title:</strong> <%= classroom[:title] %></p>
+        <p><strong>Description:</strong> <%= classroom[:description] %></p>
+        <p><strong>Teacher:</strong> <%= classroom[:teacher] %></p>
+        <p class="mb-0"><strong>Your Role:</strong> <%= classroom[:role] %></p>
+      </div>
+      <div class=" d-flex  " >
+        <button class="btn btn-primary me-2 fw-semibold">
+          <a style="text-decoration: none; color: white;" href="/classroom/<%= classroom[:id] %>">Enter Classroom</a>
+        </button>
+        <%= button_to "Remove", delete_classroom_path(classroom[:id]), 
+          method: :delete, 
+          data: { confirm: "Are you sure you want to remove this classroom?" }, 
+          class: "btn btn-danger fw-semibold" %> 
+      </div>
+    </div>
+  </div>
+  

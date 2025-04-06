@@ -1,0 +1,22 @@
+<div class="d-flex flex-column" style="width: 250px; height: 100%; background-color: #f8f9fa;">
+  <% @sidebar_items = [
+    { name: "Assignments", route: "assignment", icon: "https://res.cloudinary.com/dfl8h4on4/image/upload/v1742818085/icons8-task-48_wnuoeo.png" },
+    { name: "Group Assignment", route: "group-assignment", icon: "https://res.cloudinary.com/dfl8h4on4/image/upload/v1742818067/icons8-group-work-48_untc9f.png" },
+    { name: "Self Group", route: "self-group", icon: "https://res.cloudinary.com/dfl8h4on4/image/upload/v1742818062/icons8-group-48_nvjzwu.png" },
+    { name: "Learning Content", route: "learning-content", icon: "https://res.cloudinary.com/dfl8h4on4/image/upload/v1742818073/icons8-open-book-50_vig0ry.png" },
+    { name: "Manage Students", route: "manage-students", icon: "https://res.cloudinary.com/dfl8h4on4/image/upload/v1742818079/icons8-student-registration-80_py7wq9.png" }
+  ] %>
+
+  <% @sidebar_items.each do |item| %>
+    <% next if @role == "student" && item[:route] == "manage-students" %>    
+    <% @is_active = request.path.split('/').last == item[:route] %>
+    <div class="p-2 border-bottom border-2" style="border-color: #808080;">
+      <a class="p-2 fs-5 fw-semibold rounded-2 d-flex justify-content-start align-items-center gap-2 text-black" 
+         style="background-color: <%= @is_active ? '#D9D9D9' : '' %>; text-decoration: none; transition: background-color 0.5s ease-in-out;"
+         href="/classroom/<%= @id %>/<%= item[:route] %>">
+        <img style="width: 30px;" src="<%= item[:icon] %>" alt=""> 
+        <p class="mb-0"><%= item[:name] %></p>
+      </a>
+    </div>
+  <% end %>
+</div>

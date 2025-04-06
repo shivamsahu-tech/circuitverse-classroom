@@ -1,0 +1,27 @@
+
+<div style="width: 100vw; height: 100vh;"  class="d-flex flex-column" >
+    <%= render "shared/header"  %>
+    <div class="d-flex flex-grow-1 " >
+        <%= render "shared/sidebar", locals: { id: "3423" } %>
+   
+
+    <div class="flex-grow-1 mt-lg-2" >
+
+        <div class="text-center mb-4"  style="margin-top: 15  0px;"  >
+          <h1 class="text-success fw-bold">🎉 Welcome to <%= @classroom.title %> 🎉</h1>
+          <p class="lead">We're excited to have you here. Let’s start learning together!</p>
+        </div>
+      
+        <div class="card shadow-sm p-4 mx-auto" style="max-width: 600px;">
+          <h4 class="mb-3"><strong>Classroom Details</strong></h4>
+          
+          <p><strong>Title:</strong> <%= @classroom.title %></p>
+          <p><strong>Description:</strong> <%= @classroom.description %></p>
+          <p><strong>Teacher:</strong> <%= @classroom.teacher %></p>
+        </div>
+      
+    </div>
+      
+ </div>
+
+</div>

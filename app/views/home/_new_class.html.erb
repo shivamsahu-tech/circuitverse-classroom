@@ -1,0 +1,88 @@
+<div id="new-class-form" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; display: flex; justify-content: center; align-items: center;">
+  <div class="bg-white rounded-4" style="width: 380px; position: relative; font-family: 'Segoe UI', sans-serif;">
+
+    <!-- Toggle Buttons -->
+    <div class="d-flex mb-4" style="border-bottom: 1px solid #ccc;">
+      <button id="teacher-btn" onclick="toggleForm('teacher')" style="flex: 1; padding: 10px; border: none; background-color: green; font-weight: bold; border-top-left-radius: 12px;">Teacher</button>
+      <button id="student-btn" onclick="toggleForm('student')" style="flex: 1; padding: 10px; border: none; background-color: #808080; font-weight: bold; border-top-right-radius: 12px;">Student</button>
+    </div>
+
+    <div class="px-4 pb-4"> 
+      <div style="height: 250px;" >
+        <!-- Teacher Form -->
+      <div id="teacher-form">
+        <%= form_with url: "/classroom/create", method: :post, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :title, "Title", class: "form-label fw-semibold" %>
+            <%= f.text_field :title, class: "form-control ", style: "border-radius: 5px; border-color: #808080" %>
+          </div>
+          <div class="mb-3">
+            <%= f.label :description, "Description", class: "form-label fw-semibold" %>
+            <%= f.text_area :description, class: "form-control", style: "border-radius: 5px; border-color: #808080", rows: 3 %>
+          </div>
+          <div class="d-flex justify-content-between">
+            
+          </div>
+
+          <div class="d-flex justify-content-between" >
+            <%= f.submit "Submit", class: "btn btn-primary", style: "width: 45%; transition: all 100ms ease;" %>
+            <button type="button" onclick="closeForm()" class="btn btn-secondary" style="width: 45%; transition: all 100ms ease;" >Cancel</button>
+          </div>
+    
+        <% end %>
+      </div>
+
+      <!-- Student Form -->
+      <div id="student-form" style="display: none;">
+
+        <p>
+          You can join a classroom using the join code provided by your teacher. <br>
+          If you don't have a join code, please contact your teacher for assistance.
+        </p>
+        <%= form_with url: "/join", method: :post, local: true do |f| %>
+          <div class="mb-3">
+            <%= f.label :join_code, "Join Code", class: "form-label fw-semibold" %>
+            <%= f.text_field :join_code, class: "form-control", style: "border-radius: 5px; border-color: #808080" %>
+          </div>
+          <div class="d-flex justify-content-between">
+          </div><div class="d-flex justify-content-between" >
+            <%= f.submit "Submit", class: "btn btn-primary", style: "width: 45%; transition: all 100ms ease;" %>
+            <button type="button" onclick="closeForm()" class="btn btn-secondary" style="width: 45%; transition: all 100ms ease;" >Cancel</button>
+          </div>
+    
+
+
+        <% end %>
+      </div>
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+<!-- Inline Script -->
+<script>
+  function toggleForm(mode) {
+    const teacherForm = document.getElementById("teacher-form");
+    const studentForm = document.getElementById("student-form");
+    const teacherBtn = document.getElementById("teacher-btn");
+    const studentBtn = document.getElementById("student-btn");
+
+    if (mode === 'teacher') {
+      teacherForm.style.display = 'block';
+      studentForm.style.display = 'none';
+      teacherBtn.style.backgroundColor = 'green';
+      studentBtn.style.backgroundColor = '#808080';
+    } else {
+      teacherForm.style.display = 'none';
+      studentForm.style.display = 'block';
+      teacherBtn.style.backgroundColor = '#808080';
+      studentBtn.style.backgroundColor = 'green';
+    }
+  }
+
+  function closeForm() {
+    document.getElementById("new-class-form").style.display = "none";
+  }
+</script>

@@ -1,0 +1,22 @@
+<div class="card mt-3 shadow-sm rounded-2" style="border-color: #808080; line-height: 0.8;">
+    <div  class="py-3 px-2" >
+        <div class="fs-6 fw-normal">
+            <p><strong>Group Name:</strong> <%= self_group[:group_name] %></p>
+            <p><strong>Description:</strong> <%= self_group[:description] %></p>
+          </div>
+    
+          <div class="d-flex justify-content-between align-items-end">
+            <div>
+                <p ><strong>Members:</strong> <%= self_group[:members] %></p>    
+            </div>
+            <div>
+                <button class="btn btn-primary me-2 fw-semibold">
+                    Edit Group
+                </button>
+                <a href="https://circuitverse.org/simulator" target="_blank">
+                    <button class="btn btn-danger fw-semibold">Open Simulator</button>
+                </a>
+              </div>
+          </div>
+    </div>  
+</div>

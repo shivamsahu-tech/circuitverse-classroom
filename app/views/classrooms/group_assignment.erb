@@ -1,0 +1,29 @@
+
+<div style="width: 100vw; height: 100vh;" class="d-flex flex-column" >
+    <%= render "shared/header"  %>
+    <div class="d-flex flex-grow-1" >
+        <div>
+            <%= render "shared/sidebar", locals: { id: "3423" } %>
+        </div>
+        
+    
+        <div class="w-100  m-5" >
+            <div class="d-flex justify-content-between align-items-center  border-bottom border-2 border-black"  >
+                <h4><strong> <%= @role == "teacher" ? "Manage Group Assignments" : "Our Group Assignments"  %> </strong></h5>
+                
+                <% if @role == 'teacher' %>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <button class="btn btn-dark">New +</button>
+                </div>
+                <% end %>
+            </div>
+
+            <div>
+                <% @group_assignments.each do |group_assignment| %>
+                    <%= render partial: "shared/group_assignment_list", locals: { group_assignment: group_assignment } %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+</div>

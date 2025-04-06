@@ -1,0 +1,53 @@
+<div class="position-relative">
+  <%= render "header" %>
+
+  <div id="new-class-form" style="display: none;">
+    <%= render "new_class" %>
+  </div>
+  <%= render "topup" %>
+
+  <div class="container mt-4 flex-grow-1">
+    <div class="row" style="margin-top: 100px;">
+      <div class="col-md-8 mt-md-5 fs-5">
+        <h4><strong>Welcome to <span class="text-primary">CircuitVerse Classroom!</span> 🚀</strong></h4>
+        <p>
+          Enhance your digital circuit learning with a structured and efficient platform.<br>
+          We simplify class management, assignments, and collaboration, so you can focus <br>
+          on building, learning, and innovating with ease!
+        </p>
+        <br>
+        <p>
+          You can join or create a specific classroom to learn or teach digital circuits.<br>
+        </p>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <img
+          src="https://res.cloudinary.com/dfl8h4on4/image/upload/v1742801338/new_homepage_sketch-a2757b29e864a947dbaff874c9fe659068e9c0eab4f3ccacc36ebdbc5ade6833_k77b4l.png"
+          alt="Classroom Illustration"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+
+    <div class="mt-4 px-2 w-100 d-flex justify-content-between align-items-end border-bottom border-2 border-black">
+      <h4><strong>Your Classrooms:</strong></h4>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <button class="btn btn-dark" onclick="openForm(event)">New +</button>
+      </div>
+    </div>
+
+    <!-- Here all the classes will render that belong to that user -->
+    <% @user_classrooms.each do |user_classroom| %>
+      <%= render partial: "classes", locals: { classroom: user_classroom } %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function openForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('new-class-form');
+    form.style.display = 'block';
+  }
+</script>
