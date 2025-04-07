@@ -1,7 +1,22 @@
 services:
   - type: web
-    name: mysite
-    runtime: ruby
-    plan: free
-    buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec rails server"
+    name: my-rails-app
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: RAILS_ENV
+        value: production
+      - key: DATABASE_HOST
+        sync: false
+      - key: DATABASE_PORT
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DATABASE_NAME
+        sync: false
